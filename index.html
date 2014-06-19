@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Media</title>
+</head>
+<body ng-app="facebookFolio">
+    <div ng-controller="person">
+        <h1>
+            Hello {{firstName + " " + lastName}}
+        </h1>
+
+        <div>
+            <div>
+                First Name:
+                <input type="text" ng-model="firstName"/>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                Last Name:
+                <input type="text" ng-model="lastName"/>
+            </div>
+        </div>
+
+        <h2>
+            What's happenin {{firstName}}?
+        </h2>
+        <div ng-form="statusForm">
+            <textarea name="newStatus" ng-model="newStatus" cols="30" rows="10"
+                    required
+                    ng-minlength="10"
+                    ></textarea>
+            <button ng-click="addNewStatus()"
+                    ng-disabled="statusForm.newStatus.$invalid"
+                    >Add New Status</button>
+        </div>
+
+        <div ng-repeat="status in statuses | orderBy:'date':true">
+            @{{status.date | date:'medium'}} - {{status.text}}
+        </div>
+    </div>
+
+    <script src="lib/angular.js"></script>
+    <script src="app/app.js"></script>
+</body>
+</html>
